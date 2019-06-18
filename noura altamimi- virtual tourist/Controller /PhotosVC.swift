@@ -95,6 +95,18 @@ class PhotosVC: UIViewController,NSFetchedResultsControllerDelegate,UICollection
                     print ("error9")
                     let errorMessage = error?.localizedDescription ?? message
                     print(errorMessage ?? "")
+                    let alert = UIAlertController(title:"", message: "\(errorMessage ?? "")", preferredStyle: .alert)
+                    
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+                        
+                    
+                        
+                    }))
+                    
+                   
+                    
+                    self.present(alert, animated: true)
                     
                     return
                 }
