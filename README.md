@@ -20,7 +20,7 @@ the project build with using multible Xcode Feature like using :
 * Swift 5
 
 ## Installation instructions
-* Clone this repository at: ```git clone ```
+* Clone this repository at: ```git clone https://github.com/ntamimi/noura-altamimi--virtual-tourist```
 
 ## Features
 The app will allow users to drop pins on a map, as if they were stops on a tour.
