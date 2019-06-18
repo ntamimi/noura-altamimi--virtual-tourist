@@ -38,18 +38,23 @@
                     </view>
                     <navigationItem key="navigationItem" title="virtual tourist " id="pA6-9t-bfd"/>
                     <connections>
-                        <segue destination="UJn-aQ-637" kind="show" id="1Dm-ho-xNn"/>
+                        <outlet property="mapView" destination="0J4-4M-v1e" id="EYI-An-9Pz"/>
+                        <segue destination="UJn-aQ-637" kind="show" identifier="showPhoto" id="1Dm-ho-xNn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="utT-KI-RWe"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="utT-KI-RWe">
+                    <connections>
+                        <action selector="Longpress:" destination="BYZ-38-t0r" id="tD6-TS-EFW"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1362.3188405797102" y="-561.16071428571422"/>
         </scene>
         <!--PhotosVC-->
         <scene sceneID="Jj3-th-04D">
             <objects>
-                <viewController id="UJn-aQ-637" customClass="photosVC" customModule="noura_altamimi__virtual_tourist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UJn-aQ-637" customClass="PhotosVC" customModule="noura_altamimi__virtual_tourist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="npz-Lw-Lmt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,13 +66,14 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="RVp-tp-8TT"/>
-                                    <barButtonItem title="new collection" id="sqb-Oq-tH2"/>
+                                    <barButtonItem title="new collection" id="sqb-Oq-tH2">
+                                        <connections>
+                                            <action selector="newCollectionTapped:" destination="UJn-aQ-637" id="KAu-jC-Eu6"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Lug-WM-qmT"/>
                                 </items>
                             </toolbar>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gAZ-C1-mz2">
-                                <rect key="frame" x="197" y="830" width="20" height="20"/>
-                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hNr-Mt-gV8">
                                 <rect key="frame" x="0.0" y="88" width="414" height="730"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,14 +84,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SVb-fy-vUb">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell" reuseIdentifier="cell" id="SVb-fy-vUb" customClass="photoCell" customModule="noura_altamimi__virtual_tourist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="168" height="159"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="168" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FFm-yu-edC">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FFm-yu-edC" customClass="costumImage" customModule="noura_altamimi__virtual_tourist" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="168" height="159"/>
                                                 </imageView>
                                             </subviews>
@@ -96,6 +102,9 @@
                                             <constraint firstItem="FFm-yu-edC" firstAttribute="top" secondItem="SVb-fy-vUb" secondAttribute="top" id="qXO-mb-ZgB"/>
                                             <constraint firstAttribute="bottom" secondItem="FFm-yu-edC" secondAttribute="bottom" id="viZ-IL-60s"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="image" destination="FFm-yu-edC" id="fgK-5u-DLF"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -109,6 +118,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gAZ-C1-mz2">
+                                <rect key="frame" x="197" y="830" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -128,6 +140,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Iva-ei-8y8"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndecator" destination="gAZ-C1-mz2" id="V2E-AM-PiY"/>
+                        <outlet property="collectionView" destination="hNr-Mt-gV8" id="n29-aJ-1Kr"/>
+                        <outlet property="newCollectionButton" destination="sqb-Oq-tH2" id="ppR-2n-z2K"/>
+                        <outlet property="noPhotoLabel" destination="EQe-1u-y7e" id="A5i-uB-Epm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NtB-di-PYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
